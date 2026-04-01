@@ -1,135 +1,178 @@
-1	# Asistente Disciplinario
-     2	
-     3	Aplicación Flutter para **registrar, visualizar y resumir** novedades disciplinarias de estudiantes de forma simple.
-     4	
-     5	## Descripción
-     6	
-     7	Este proyecto implementa un flujo básico para gestión disciplinaria:
-     8	
-     9	- **Registro de casos** con datos del estudiante, programa, tipo de falta y observaciones.
-    10	- **Listado de registros** en tiempo real.
-    11	- **Reporte estadístico** por severidad de falta (Leve, Grave, Muy Grave).
-    12	
-    13	La app está pensada como base académica/prototipo y actualmente usa almacenamiento **en memoria**.
-    14	
-    15	## Funcionalidades actuales
-    16	
-    17	1. **Pantalla principal**
-    18	   - Navegación a:
-    19	     - Registro disciplinario.
-    20	     - Reportes.
-    21	     - Listado de registros.
-    22	
-    23	2. **Registro disciplinario**
-    24	   - Campos obligatorios:
-    25	     - Nombre del estudiante.
-    26	     - Programa académico.
-    27	     - Tipo de falta.
-    28	   - Campo opcional:
-    29	     - Observaciones.
-    30	   - Validación de campos obligatorios.
-    31	   - Confirmación visual al guardar.
-    32	
-    33	3. **Listado de registros**
-    34	   - Muestra cada registro en tarjetas.
-    35	   - Incluye nombre, programa, tipo de falta y fecha.
-    36	   - Estado vacío cuando aún no existen datos.
-    37	
-    38	4. **Reportes estadísticos**
-    39	   - Total de registros.
-    40	   - Conteo por tipo de falta.
-    41	   - Barras de progreso para visualizar proporciones.
-    42	
-    43	## Arquitectura y estructura del proyecto
-    44	
-    45	```text
-    46	lib/
-    47	├── main.dart                 # Punto de entrada y menú principal
-    48	├── registro_screen.dart      # Formulario de creación de registros
-    49	├── listado_screen.dart       # Vista de registros guardados
-    50	├── reportes_screen.dart      # Métricas y visualización básica
-    51	├── models/
-    52	│   └── registro.dart         # Modelo de dominio Registro
-    53	└── data/
-    54	    └── registros_store.dart  # Store en memoria con ValueNotifier
-    55	```
-    56	
-    57	### Decisiones técnicas
-    58	
-    59	- **Flutter + Material Design** para interfaz.
-    60	- **`ValueNotifier<List<Registro>>`** para estado compartido simple.
-    61	- Sin backend ni base de datos por ahora.
-    62	
-    63	## Requisitos
-    64	
-    65	- Flutter SDK (recomendado: versión estable reciente).
-    66	- Dart SDK compatible con el proyecto (`sdk: ^3.5.3`).
-    67	
-    68	Verifica instalación con:
-    69	
-    70	```bash
-    71	flutter --version
-    72	flutter doctor
-    73	```
-    74	
-    75	## Instalación y ejecución
-    76	
-    77	1. Clonar repositorio:
-    78	
-    79	```bash
-    80	git clone <URL_DEL_REPOSITORIO>
-    81	cd AsistenteDisciplinario
-    82	```
-    83	
-    84	2. Instalar dependencias:
-    85	
-    86	```bash
-    87	flutter pub get
-    88	```
-    89	
-    90	3. Ejecutar la aplicación:
-    91	
-    92	```bash
-    93	flutter run
-    94	```
-    95	
-    96	## Flujo de uso sugerido
-    97	
-    98	1. Desde el menú principal, abrir **Ir a Registro Disciplinario**.
-    99	2. Crear uno o varios registros.
-   100	3. Revisar resultados en **Ver Listado de Registros**.
-   101	4. Analizar tendencias en **Ver Reportes**.
-   102	
-   103	## Limitaciones actuales
-   104	
-   105	- Los datos se guardan solo **en memoria**.
-   106	  - Se pierden al cerrar/reiniciar la app.
-   107	- No hay autenticación ni roles de usuario.
-   108	- No hay exportación de reportes (PDF/Excel/CSV).
-   109	- No hay filtros avanzados ni búsqueda.
-   110	
-   111	## Próximas mejoras recomendadas
-   112	
-   113	- Persistencia local (por ejemplo, `sqflite` o `hive`).
-   114	- Sincronización en la nube (Firebase o API REST).
-   115	- Filtros por fecha, programa y tipo de falta.
-   116	- Dashboard con gráficos más detallados.
-   117	- Gestión de usuarios y permisos.
-   118	- Pruebas unitarias y de widgets.
-   119	
-   120	## Comandos útiles
-   121	
-   122	```bash
-   123	# Obtener dependencias
-   124	flutter pub get
-   125	
-   126	# Ejecutar análisis estático
-   127	flutter analyze
-   128	
-   129	# Ejecutar pruebas
-   130	flutter test
-   131	```
-   132	
-   133	## Estado del proyecto
-   134	
-   135	Proyecto funcional como **MVP académico** para registro y monitoreo disciplinario básico.
+# 📱 Asistente Disciplinario
+
+Aplicación desarrollada en Flutter para registrar, visualizar y analizar novedades disciplinarias de estudiantes de forma simple.
+
+---
+
+## 📌 Descripción
+
+Este proyecto implementa un flujo básico de gestión disciplinaria:
+
+* Registro de casos con datos del estudiante, programa, tipo de falta y observaciones.
+* Listado de registros en tiempo real.
+* Reportes estadísticos por severidad de falta (Leve, Grave, Muy Grave).
+
+La app está diseñada como **prototipo académico (MVP)** y actualmente utiliza almacenamiento en memoria.
+
+---
+
+## ⚙️ Funcionalidades
+
+### 1. 🏠 Pantalla principal
+
+* Navegación a:
+
+  * Registro disciplinario
+  * Listado de registros
+  * Reportes
+
+---
+
+### 2. 📝 Registro disciplinario
+
+* Campos obligatorios:
+
+  * Nombre del estudiante
+  * Programa académico
+  * Tipo de falta
+* Campo opcional:
+
+  * Observaciones
+* Validación de campos
+* Confirmación visual al guardar
+
+---
+
+### 3. 📋 Listado de registros
+
+* Visualización en tarjetas
+* Información mostrada:
+
+  * Nombre
+  * Programa
+  * Tipo de falta
+  * Fecha
+* Estado vacío cuando no hay registros
+
+---
+
+### 4. 📊 Reportes estadísticos
+
+* Total de registros
+* Conteo por tipo de falta
+* Barras de progreso para visualizar proporciones
+
+---
+
+## 🏗️ Arquitectura del Proyecto
+
+```
+lib/
+├── main.dart                 # Punto de entrada y menú principal
+├── registro_screen.dart      # Formulario de creación de registros
+├── listado_screen.dart       # Vista de registros guardados
+├── reportes_screen.dart      # Métricas y visualización
+├── models/
+│   └── registro.dart         # Modelo de dominio Registro
+└── data/
+    └── registros_store.dart  # Estado en memoria (ValueNotifier)
+```
+
+---
+
+## 🧠 Decisiones Técnicas
+
+* Flutter + Material Design
+* Manejo de estado con `ValueNotifier<List<Registro>>`
+* Sin backend ni base de datos (enfoque MVP)
+
+---
+
+## 📋 Requisitos
+
+* Flutter SDK (versión estable recomendada)
+* Dart SDK compatible (`sdk: ^3.5.3`)
+
+Verificar instalación:
+
+```bash
+flutter --version
+flutter doctor
+```
+
+---
+
+## 🚀 Instalación y Ejecución
+
+### 1. Clonar repositorio
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd AsistenteDisciplinario
+```
+
+### 2. Instalar dependencias
+
+```bash
+flutter pub get
+```
+
+### 3. Ejecutar la app
+
+```bash
+flutter run
+```
+
+---
+
+## 🔄 Flujo de Uso
+
+1. Ir a **Registro Disciplinario**
+2. Crear uno o varios registros
+3. Consultar en **Listado de Registros**
+4. Analizar en **Reportes**
+
+---
+
+## ⚠️ Limitaciones
+
+* Datos almacenados solo en memoria
+* Se pierden al cerrar la app
+* Sin autenticación ni roles
+* Sin exportación de reportes
+* Sin filtros avanzados
+
+---
+
+## 🔮 Próximas Mejoras
+
+* Persistencia local (SQLite / Hive)
+* Integración con backend (Firebase / API REST)
+* Filtros por fecha, programa y tipo de falta
+* Dashboard con gráficos avanzados
+* Gestión de usuarios y permisos
+* Pruebas unitarias y de widgets
+
+---
+
+## 🛠️ Comandos Útiles
+
+```bash
+# Obtener dependencias
+flutter pub get
+
+# Análisis estático
+flutter analyze
+
+# Ejecutar pruebas
+flutter test
+```
+
+---
+
+## 📌 Estado del Proyecto
+
+✔️ MVP funcional académico
+✔️ Listo para demostración y mejora incremental
+
+---
